@@ -8,22 +8,30 @@ use Exception;
 
 class CloudinaryService
 {
-    protected Cloudinary $cloudinary;
+    protected ?Cloudinary $cloudinary = null;
 
     public function __construct()
     {
-        $config = Configuration::instance();
-        $config->cloud->cloudName = config('services.cloudinary.cloud_name');
-        $config->cloud->apiKey = config('services.cloudinary.api_key');
-        $config->cloud->apiSecret = config('services.cloudinary.api_secret');
-        $config->url->secure = true;
+    }
 
-        $this->cloudinary = new Cloudinary($config);
+    protected function cloudinary(): Cloudinary
+    {
+        if ($this->cloudinary === null) {
+            $config = Configuration::instance();
+            $config->cloud->cloudName = config('services.cloudinary.cloud_name');
+            $config->cloud->apiKey = config('services.cloudinary.api_key');
+            $config->cloud->apiSecret = config('services.cloudinary.api_secret');
+            $config->url->secure = true;
+
+            $this->cloudinary = new Cloudinary($config);
+        }
+
+        return $this->cloudinary;
     }
 
     public function upload(string $filePath, string $folder = 'ladang-lima'): array
     {
-        $result = $this->cloudinary->uploadApi()->upload($filePath, [
+        $result = $this->cloudinary()->uploadApi()->upload($filePath, [
             'folder' => $folder,
             'resource_type' => 'auto',
             'quality' => 'auto',
@@ -44,7 +52,7 @@ class CloudinaryService
     public function destroy(string $publicId): bool
     {
         try {
-            $this->cloudinary->uploadApi()->destroy($publicId, [
+            $this->cloudinary()->uploadApi()->destroy($publicId, [
                 'resource_type' => 'auto',
             ]);
             return true;
