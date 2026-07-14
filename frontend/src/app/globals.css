@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDFCFB;
+  --foreground: #052e16;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-mono: var(--font-jetbrains-mono);
+  
+  --color-forest: #052e16;
+  --color-amber-gold: #B45309;
+  --color-earth: #FDFCFB;
+  
+  --radius-huge: 1.5rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui;
+  -webkit-font-smoothing: antialiased;
+}
