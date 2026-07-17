@@ -28,13 +28,21 @@ const Navbar = ({ content }: { content?: any }) => {
 
   const mapLink = (href: string) => routeMap[href] || href;
 
-  const navLinks = (c.links || [
+  const rawLinks = c.links || [
     { name: "HOME", href: "/" },
     { name: "ABOUT US", href: "/about" },
     { name: "OUR PRODUCT", href: "/products" },
     { name: "NEWS", href: "/news" },
     { name: "CONTACT US", href: "/contact" },
-  ])
+  ];
+
+  // Ensure CAREER is always present
+  const hasCareer = rawLinks.some((link: any) => (link.name || "").toUpperCase() === "CAREER");
+  const finalLinks = hasCareer 
+    ? rawLinks.map((link: any) => (link.name || "").toUpperCase() === "CAREER" ? { ...link, href: "https://career.ladanglima.com/" } : link)
+    : [...rawLinks, { name: "CAREER", href: "https://career.ladanglima.com/" }];
+
+  const navLinks = finalLinks
     .filter((link: any) => {
       const name = (link.name || "").toUpperCase();
       return !name.includes("TV");
@@ -74,11 +82,27 @@ const Navbar = ({ content }: { content?: any }) => {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] font-bold tracking-widest uppercase transition-colors",
+                  "text-[11px] font-bold tracking-widest uppercase transition-colors flex items-center gap-1",
                   scrolled ? "hover:text-amber-gold" : "hover:text-amber-gold"
                 )}
               >
                 {link.name}
+                {link.name === "CAREER" && (
+                  <motion.span
+                    animate={{ 
+                      color: ["#ef4444", "#ffffff", "#ef4444"],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{ 
+                      duration: 1.5, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="font-black"
+                  >
+                    !!!
+                  </motion.span>
+                )}
               </Link>
             ))}
           </div>
@@ -110,10 +134,26 @@ const Navbar = ({ content }: { content?: any }) => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-bold tracking-widest uppercase text-forest hover:text-amber-gold"
+                  className="text-sm font-bold tracking-widest uppercase text-forest hover:text-amber-gold flex items-center gap-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
+                  {link.name === "CAREER" && (
+                    <motion.span
+                      animate={{ 
+                        color: ["#ef4444", "#ffffff", "#ef4444"],
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{ 
+                        duration: 1.5, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                      className="font-black"
+                    >
+                      !!!
+                    </motion.span>
+                  )}
                 </Link>
               ))}
             </div>
