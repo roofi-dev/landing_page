@@ -17,7 +17,7 @@ const Footer = ({ content }: { content?: any }) => {
               <img 
                 src="/logo.png" 
                 alt={c.brand_name || "Ladang Lima"} 
-                className="h-14 w-auto" 
+                className="h-14 w-auto [filter:drop-shadow(0_0_10px_rgba(255,255,255,0.8))]" 
               />
             </Link>
             <p className="text-gray-600 text-[12px] leading-relaxed max-w-xs">

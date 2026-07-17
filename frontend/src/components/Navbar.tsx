@@ -60,7 +60,10 @@ const Navbar = ({ content }: { content?: any }) => {
             <img 
               src="/logo.png" 
               alt={c.brand_name || "Ladang Lima"} 
-              className="h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105"
+              className={cn(
+                "h-10 md:h-12 w-auto transition-all duration-300 group-hover:scale-105",
+                !scrolled && "brightness-0 invert"
+              )}
             />
           </Link>
 
