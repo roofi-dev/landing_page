@@ -83,3 +83,33 @@ export async function getRecipeBySlug(slug: string): Promise<Recipe | null> {
     return null;
   }
 }
+
+export interface NewsArticle {
+  id: number;
+  title: string;
+  slug: string;
+  category: string | null;
+  excerpt: string | null;
+  content: string | null;
+  image_url: string | null;
+  published_date: string | null;
+  is_featured: boolean;
+  status: string;
+  sort_order: number;
+}
+
+export async function getNews(): Promise<NewsArticle[]> {
+  try {
+    return await fetchApi<NewsArticle[]>("/public/news");
+  } catch {
+    return [];
+  }
+}
+
+export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
+  try {
+    return await fetchApi<NewsArticle>(`/public/news/${slug}`);
+  } catch {
+    return null;
+  }
+}

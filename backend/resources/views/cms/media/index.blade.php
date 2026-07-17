@@ -101,7 +101,7 @@
 <script>
     function copyUrl(url) {
         navigator.clipboard.writeText(url).then(() => {
-            alert('Digital Asset URL copied to clipboard.');
+            showToast('Digital Asset URL copied to clipboard.', 'success');
         });
     }
 </script>

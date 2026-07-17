@@ -154,14 +154,14 @@ export default async function ContactPage() {
       </section>
 
       {/* Factory CTA Strip */}
-      <section className="relative py-20 md:py-24 overflow-hidden bg-forest">
+      <section className="relative py-20 md:py-24 overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0 z-0">
           <img
             src={fc.background_image || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"}
             alt="Factory"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest via-forest/60 to-forest/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-2xl space-y-6">

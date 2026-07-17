@@ -34,10 +34,25 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #334155;
         }
+
+        /* Toast Animations */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        .toast-animate-in { animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .toast-animate-out { animation: slideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
     </style>
 </head>
 <body class="bg-[#F8FAFC] min-h-screen text-[#0f172a]">
     <div class="flex min-h-screen">
+        <!-- Toast Container -->
+        <div id="toast-container" class="fixed top-8 right-8 z-[100] flex flex-col gap-4 w-full max-w-[400px] pointer-events-none"></div>
+
         <!-- Sidebar -->
         <aside class="w-72 bg-[#0f172a] text-white flex flex-col fixed h-full z-40 shadow-[4px_0_24px_rgba(0,0,0,0.1)]">
             <div class="p-10">
@@ -95,6 +110,10 @@
                     <svg class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     Kitchen Lab
                 </a>
+                <a href="{{ route('cms.news.index') }}" class="sidebar-link {{ request()->routeIs('cms.news.*') ? 'active' : '' }} flex items-center gap-4 px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white hover:bg-white/5 transition-all group rounded-xl">
+                    <svg class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    News & Articles
+                </a>
                 <a href="{{ route('cms.media.index') }}" class="sidebar-link {{ request()->routeIs('cms.media.*') ? 'active' : '' }} flex items-center gap-4 px-6 py-4 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white hover:bg-white/5 transition-all group rounded-xl">
                     <svg class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                     Asset Vault
@@ -120,21 +139,51 @@
 
         <!-- Main Content -->
         <main class="flex-1 ml-72 p-16">
-            @if(session('success'))
-                <div class="mb-8 bg-green-50 border border-green-200 text-green-800 rounded-2xl px-6 py-4 text-sm flex items-center gap-3 shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
-                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    <span class="font-semibold">{{ session('success') }}</span>
-                </div>
-            @endif
-            @if(session('error'))
-                <div class="mb-8 bg-red-50 border border-red-200 text-red-800 rounded-2xl px-6 py-4 text-sm flex items-center gap-3 shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
-                    <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                    <span class="font-semibold">{{ session('error') }}</span>
-                </div>
-            @endif
             @yield('content')
         </main>
     </div>
+
+    <script>
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgColor = type === 'success' ? 'bg-[#052e16]' : 'bg-red-900';
+            const icon = type === 'success' 
+                ? `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`
+                : `<svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
+
+            toast.className = `pointer-events-auto flex items-center gap-4 p-5 rounded-[2rem] shadow-2xl border border-white/10 ${bgColor} text-white toast-animate-in min-w-[320px]`;
+            toast.innerHTML = `
+                <div class="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                    ${icon}
+                </div>
+                <div class="flex-1">
+                    <p class="text-[11px] font-black uppercase tracking-[0.2em] text-white/40 mb-0.5">${type.toUpperCase()}</p>
+                    <p class="text-sm font-bold tracking-tight">${message}</p>
+                </div>
+                <button onclick="this.parentElement.remove()" class="p-2 hover:bg-white/10 rounded-full transition-colors opacity-40 hover:opacity-100">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                toast.classList.replace('toast-animate-in', 'toast-animate-out');
+                setTimeout(() => toast.remove(), 400);
+            }, 5000);
+        }
+
+        // Initialize flash messages as toasts
+        @if(session('success'))
+            showToast("{{ session('success') }}", 'success');
+        @endif
+        @if(session('error'))
+            showToast("{{ session('error') }}", 'error');
+        @endif
+    </script>
 </body>
 </html>
 </html>

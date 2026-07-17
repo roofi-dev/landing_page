@@ -9,7 +9,7 @@
 </div>
 
 <!-- Stats Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
     <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-xl transition-all group overflow-hidden relative">
         <div class="absolute top-0 right-0 w-24 h-24 bg-[#052e16]/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform"></div>
         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest relative z-10">Total Sections</p>
@@ -59,9 +59,23 @@
             </div>
         </div>
     </div>
+
+    <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-xl transition-all group overflow-hidden relative">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform"></div>
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest relative z-10">Total Articles</p>
+        <div class="flex items-end justify-between mt-4 relative z-10">
+            <div>
+                <p class="text-4xl font-black text-[#052e16]">{{ $stats['news'] }}</p>
+                <p class="text-[10px] font-bold text-green-600 mt-1 uppercase tracking-wider">{{ $stats['published_news'] }} Published</p>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/5 flex items-center justify-center">
+                <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Recent Products -->
     <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
         <div class="flex items-center justify-between p-6 bg-slate-50/50 border-b border-slate-100">
@@ -123,9 +137,37 @@
             @endforelse
         </div>
     </div>
+    <!-- Recent News -->
+    <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
+        <div class="flex items-center justify-between p-6 bg-slate-50/50 border-b border-slate-100">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-6 bg-emerald-500 rounded-full"></div>
+                <h2 class="font-extrabold text-[#052e16] uppercase tracking-wider text-sm">Recent Articles</h2>
+            </div>
+            <a href="{{ route('cms.news.index') }}" class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest hover:underline">View All</a>
+        </div>
+        <div class="divide-y divide-slate-50">
+            @forelse($recent_news as $article)
+                <div class="flex items-center gap-4 p-5 hover:bg-slate-50 transition-colors group">
+                    <div class="relative w-14 h-14 rounded-2xl overflow-hidden shadow-sm group-hover:shadow-md transition-all">
+                        <img src="{{ $article->image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-bold text-[#052e16] truncate">{{ $article->title }}</p>
+                        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{{ $article->category }}</p>
+                    </div>
+                    <span class="text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full {{ $article->status === 'published' ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-slate-50 text-slate-400' }}">
+                        {{ $article->status }}
+                    </span>
+                </div>
+            @empty
+                <div class="p-12 text-center">
+                    <p class="text-sm text-slate-300 italic">No articles available yet</p>
+                </div>
+            @endforelse
+        </div>
+    </div>
 </div>
-
-<!-- Quick Links -->
 <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
     <a href="{{ route('cms.sections.index') }}" class="bg-[#052e16] rounded-3xl p-6 shadow-lg shadow-[#052e16]/20 hover:scale-105 transition-all group overflow-hidden relative">
         <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-white/5 rounded-full group-hover:scale-150 transition-transform"></div>
@@ -152,6 +194,15 @@
         </div>
         <p class="text-sm font-bold text-[#052e16] uppercase tracking-wider">New Recipe</p>
         <p class="text-[10px] text-slate-400 mt-1 font-medium">Share a dish</p>
+    </a>
+
+    <a href="{{ route('cms.news.create') }}" class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:border-emerald-500/20 transition-all group overflow-hidden relative">
+        <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/5 rounded-full group-hover:scale-150 transition-transform"></div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/5 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </div>
+        <p class="text-sm font-bold text-[#052e16] uppercase tracking-wider">New Article</p>
+        <p class="text-[10px] text-slate-400 mt-1 font-medium">Write a story</p>
     </a>
 
     <a href="{{ route('cms.media.index') }}" class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-xl hover:border-purple-500/20 transition-all group overflow-hidden relative">

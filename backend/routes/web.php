@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cms\DashboardController;
 use App\Http\Controllers\Cms\MediaManagementController;
+use App\Http\Controllers\Cms\NewsManagementController;
 use App\Http\Controllers\Cms\PageSectionManagementController;
 use App\Http\Controllers\Cms\ProductManagementController;
 use App\Http\Controllers\Cms\RecipeManagementController;
@@ -30,6 +31,9 @@ Route::middleware('auth')->prefix('cms')->name('cms.')->group(function () {
 
     // Recipes
     Route::resource('recipes', RecipeManagementController::class)->except(['show']);
+
+    // News
+    Route::resource('news', NewsManagementController::class)->except(['show']);
 
     // Media
     Route::get('/media', [MediaManagementController::class, 'index'])->name('media.index');

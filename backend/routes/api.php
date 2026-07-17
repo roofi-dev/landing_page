@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MediaController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\PageSectionController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\RecipeController;
@@ -19,6 +20,8 @@ Route::get('/public/products', [ProductController::class, 'publicIndex']);
 Route::get('/public/products/{slug}', [ProductController::class, 'publicShow']);
 Route::get('/public/recipes', [RecipeController::class, 'publicIndex']);
 Route::get('/public/recipes/{slug}', [RecipeController::class, 'publicShow']);
+Route::get('/public/news', [NewsController::class, 'publicIndex']);
+Route::get('/public/news/{slug}', [NewsController::class, 'publicShow']);
 
 // Protected CMS routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -42,6 +45,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/recipes', [RecipeController::class, 'store']);
     Route::put('/recipes/{id}', [RecipeController::class, 'update']);
     Route::delete('/recipes/{id}', [RecipeController::class, 'destroy']);
+
+    // News
+    Route::get('/news', [NewsController::class, 'index']);
+    Route::get('/news/{id}', [NewsController::class, 'show']);
+    Route::post('/news', [NewsController::class, 'store']);
+    Route::put('/news/{id}', [NewsController::class, 'update']);
+    Route::delete('/news/{id}', [NewsController::class, 'destroy']);
 
     // Media
     Route::get('/media', [MediaController::class, 'index']);
