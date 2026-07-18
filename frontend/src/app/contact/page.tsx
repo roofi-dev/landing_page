@@ -3,7 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import { getPageContent } from "@/lib/api";
-import { MapPin, Mail, Phone, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us — Ladang Lima",
@@ -24,7 +25,7 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@ladanglima.com",
+    value: "cs@ladanglima.com",
   },
   {
     icon: Clock,
@@ -89,65 +90,7 @@ export default async function ContactPage() {
 
             {/* Right: Form */}
             <div className="lg:col-span-7">
-              <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-12 shadow-sm">
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-[10px] font-bold tracking-[0.3em] text-forest/60 uppercase">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        type="text"
-                        placeholder="Your full name"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-[10px] font-bold tracking-[0.3em] text-forest/60 uppercase">
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-[10px] font-bold tracking-[0.3em] text-forest/60 uppercase">
-                      Subject
-                    </label>
-                    <input
-                      id="subject"
-                      type="text"
-                      placeholder="What's this about?"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-[10px] font-bold tracking-[0.3em] text-forest/60 uppercase">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      rows={6}
-                      placeholder="Tell us more..."
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all resize-none"
-                    />
-                  </div>
-
-                  <button className="group inline-flex items-center gap-4 px-8 py-4 bg-forest text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-[#4a7c59] transition-all active:scale-95">
-                    Send Message
-                    <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-all">
-                      <ArrowRight className="h-4 w-4" />
-                    </div>
-                  </button>
-                </div>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </div>
