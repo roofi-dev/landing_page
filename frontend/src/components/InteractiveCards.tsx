@@ -9,13 +9,13 @@ const cards = [
     title: "OUR COMPANY PROFILE",
     subtitle: "GET KNOW US BETTER",
     image: "https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    color: "bg-[#8b5e3c]/40",
+    color: "bg-earth/40",
   },
   {
     title: "OUR PRODUCT KNOWLEDGE",
     subtitle: "GET KNOW US BETTER",
     image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    color: "bg-[#8b5e3c]/40",
+    color: "bg-earth/40",
   },
 ];
 
@@ -46,12 +46,12 @@ const InteractiveCards = ({ content }: { content?: any }) => {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-20 md:py-24 bg-white">
+    <section ref={container} className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
         {cardsData.map((card: any, index: number) => (
           <div
             key={index}
-            className="interactive-card relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-sm cursor-pointer group"
+            className="interactive-card relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-card cursor-pointer group"
           >
             {/* Background Image */}
             <img
@@ -75,7 +75,7 @@ const InteractiveCards = ({ content }: { content?: any }) => {
               </div>
               
               {/* Play Button - Center */}
-              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#8b5e3c] transition-all duration-500 transform group-hover:scale-110">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-white group-hover:text-forest transition-all duration-500 transform group-hover:scale-110">
                 <Play className="h-5 w-5 md:h-6 md:w-6 fill-current ml-1" />
               </div>
             </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -28,7 +27,7 @@ const FactoryCTA = ({ content }: { content?: any }) => {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative py-24 md:py-32 overflow-hidden bg-[#1a1a1a]">
+    <section ref={container} className="relative py-24 md:py-32 overflow-hidden bg-charcoal">
       {/* Background with Clean Overlay */}
       <div className="absolute inset-0 z-0">
         <img 

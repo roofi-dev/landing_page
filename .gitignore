@@ -29,7 +29,8 @@ frontend/.env.*.local
 Thumbs.db
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/settings.json
 .idea/
 .cursor/
 .zed/

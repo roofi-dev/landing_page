@@ -19,7 +19,7 @@ const PageHeader = ({
   breadcrumb,
 }: PageHeaderProps) => {
   return (
-    <section className="relative min-h-[35vh] md:min-h-[45vh] flex items-center overflow-hidden bg-[#1a1a1a]">
+    <section className="relative min-h-[35vh] md:min-h-[45vh] flex items-center overflow-hidden bg-charcoal">
       {backgroundImage && (
         <div className="absolute inset-0 z-0">
           <img
@@ -31,7 +31,7 @@ const PageHeader = ({
         </div>
       )}
       {!backgroundImage && (
-        <div className="absolute inset-0 z-0 bg-[#1a1a1a]" />
+        <div className="absolute inset-0 z-0 bg-charcoal" />
       )}
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">

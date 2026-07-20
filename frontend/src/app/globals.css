@@ -11,12 +11,20 @@
   --font-serif: var(--font-instrument-serif);
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-jetbrains-mono);
+  --font-montserrat: var(--font-montserrat);
   
   --color-forest: #052e16;
+  --color-forest-light: #4a7c59;
   --color-amber-gold: #B45309;
   --color-earth: #FDFCFB;
+  --color-cream: #FAF9F6;
+  --color-charcoal: #1a1a1a;
   
   --radius-huge: 1.5rem;
+  
+  --shadow-soft: 0 4px 20px rgba(5, 46, 22, 0.05);
+  --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 40px 80px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -24,4 +32,10 @@ body {
   color: var(--foreground);
   font-family: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui;
   -webkit-font-smoothing: antialiased;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-forest-light);
+  outline-offset: 2px;
+  border-radius: 4px;
 }

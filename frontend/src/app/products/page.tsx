@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
-import ProductCard from "@/components/ProductCard";
+import ProductZigZag from "@/components/ProductZigZag";
 import { getPageContent, getProducts } from "@/lib/api";
 
 export const metadata: Metadata = {
@@ -18,8 +18,6 @@ export default async function ProductsPage() {
 
   const h = content.products_header || {};
 
-  const categories = ["All", ...Array.from(new Set(products.map((p) => p.category).filter(Boolean))) as string[]];
-
   return (
     <main className="min-h-screen bg-[#FAF9F6]">
       <Navbar content={content.navbar} />
@@ -31,34 +29,15 @@ export default async function ProductsPage() {
         breadcrumb={[{ label: "Home", href: "/" }, { label: "Our Products" }]}
       />
 
-      <section className="py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          {products.length === 0 ? (
-            <div className="text-center py-24">
-              <p className="text-forest/50 text-lg">No products available yet. Please check back soon.</p>
-            </div>
-          ) : (
-            <>
-              <div className="flex flex-wrap gap-3 mb-12">
-                {categories.map((cat) => (
-                  <span
-                    key={cat}
-                    className="px-5 py-2 rounded-xl text-sm font-medium bg-white border border-gray-100 text-forest/70"
-                  >
-                    {cat}
-                  </span>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+      {products.length === 0 ? (
+        <section className="py-20 md:py-28">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center py-24">
+            <p className="text-forest/50 text-lg">No products available yet. Please check back soon.</p>
+          </div>
+        </section>
+      ) : (
+        <ProductZigZag products={products} content={h} />
+      )}
 
       <Footer content={content.footer} />
     </main>

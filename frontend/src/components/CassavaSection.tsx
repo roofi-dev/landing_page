@@ -1,15 +1,11 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
-import { Shield, Leaf, Heart, Check, Sparkles, Smile } from "lucide-react";
-
-import Image from "next/image";
 
 const icons = [
-  { name: "GLUTEN FREE", icon: "/icon-1.webp" },
-  { name: "EGG FREE", icon: "/icon-2.webp" },
-  { name: "DAIRY FREE", icon: "/icon-3.webp" },
+  { name: "SOURCE OF FIBER", icon: "/icon-1.webp" },
+  { name: "GLUTEN FREE", icon: "/icon-2.webp" },
+  { name: "HIGH IRON & CALCIUM", icon: "/icon-3.webp" },
   { name: "NO PRESERVATIVES", icon: "/icon-4.webp" },
   { name: "NATURAL", icon: "/icon-5.webp" },
   { name: "HEALTHY", icon: "/icon-6.webp" },
@@ -56,29 +52,29 @@ const CassavaSection = ({ content }: { content?: any }) => {
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-20 md:py-24 bg-white">
+    <section ref={container} className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="cassava-header max-w-3xl mx-auto space-y-2 mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#4a7c59] tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-forest-light tracking-tight">
             {c.title || "100% Cassava"}
           </h2>
-          <p className="text-[#4a7c59] text-sm md:text-base font-semibold">
+          <p className="text-forest-light text-sm md:text-base font-semibold">
             {c.subtitle || "Healthy, Natural and Gluten Free"}
           </p>
         </div>
 
         {/* Icons Grid */}
-        <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-12">
           {icons.map((item: any, index: number) => (
             <div
               key={index}
-              className="cassava-icon flex flex-col items-center space-y-2"
+              className="cassava-icon flex flex-col items-center"
             >
-              <div className="w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center p-3 transition-transform hover:scale-110 duration-300 bg-white overflow-hidden">
-                <img 
-                  src={item.icon} 
-                  alt={item.name} 
-                  className="w-full h-full object-contain"
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center bg-white overflow-hidden transition-transform hover:scale-110 duration-300">
+                <img
+                  src={item.icon}
+                  alt={item.name}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

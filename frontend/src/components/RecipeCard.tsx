@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, ArrowRight } from "lucide-react";
 import type { Recipe } from "@/lib/api";
@@ -10,17 +11,19 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   return (
     <Link
       href={`/recipes/${recipe.slug}`}
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col"
+      className="group bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all flex flex-col"
     >
       <div className="aspect-[16/10] overflow-hidden relative">
-        <img
+        <Image
           src={image}
           alt={recipe.title}
+          width={800}
+          height={500}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         {recipe.difficulty && (
           <div className="absolute bottom-4 left-4">
-            <span className="px-3 py-1 bg-[#4a7c59] text-white rounded-full text-xs font-bold">
+            <span className="px-3 py-1 bg-forest-light text-white rounded-full text-xs font-bold">
               {recipe.difficulty}
             </span>
           </div>
@@ -41,13 +44,13 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
             </div>
           )}
         </div>
-        <h3 className="text-lg font-bold text-forest mb-2 group-hover:text-[#4a7c59] transition-colors">
+        <h3 className="text-lg font-bold text-forest mb-2 group-hover:text-forest-light transition-colors">
           {recipe.title}
         </h3>
         {recipe.description && (
           <p className="text-forest/60 text-sm mb-4 line-clamp-2 flex-1">{recipe.description}</p>
         )}
-        <div className="flex items-center text-[#4a7c59] font-bold text-sm group-hover:gap-3 transition-all">
+        <div className="flex items-center text-forest-light font-bold text-sm group-hover:gap-3 transition-all">
           Read Recipe
           <ArrowRight className="h-4 w-4" />
         </div>

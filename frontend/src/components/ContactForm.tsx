@@ -79,7 +79,7 @@ export default function ContactForm() {
               value={form.name}
               onChange={handleChange}
               placeholder="Your full name"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-forest-light/20 focus:border-forest-light outline-none transition-all"
             />
           </div>
           <div className="space-y-2">
@@ -93,7 +93,7 @@ export default function ContactForm() {
               value={form.email}
               onChange={handleChange}
               placeholder="you@example.com"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-forest-light/20 focus:border-forest-light outline-none transition-all"
             />
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function ContactForm() {
             value={form.subject}
             onChange={handleChange}
             placeholder="What's this about?"
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-forest-light/20 focus:border-forest-light outline-none transition-all"
           />
         </div>
 
@@ -123,14 +123,14 @@ export default function ContactForm() {
             value={form.message}
             onChange={handleChange}
             placeholder="Tell us more..."
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-[#4a7c59]/20 focus:border-[#4a7c59] outline-none transition-all resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-forest text-sm focus:ring-2 focus:ring-forest-light/20 focus:border-forest-light outline-none transition-all resize-none"
           />
         </div>
 
         <button
           type="submit"
           disabled={status === "loading"}
-          className="group inline-flex items-center gap-4 px-8 py-4 bg-forest text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-[#4a7c59] transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="group inline-flex items-center gap-4 px-8 py-4 bg-forest text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-forest-light transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {status === "loading" ? (
             <>

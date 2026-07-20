@@ -214,7 +214,7 @@ const FloatingGallery = ({ content, products: cmsProducts }: { content?: any; pr
       key={`${keyPrefix}-${product.id}`}
       className="w-[240px] md:w-[300px] group flex-shrink-0"
     >
-      <div className="relative aspect-[3/4] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.05)] transition-all duration-700 group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.1)] group-hover:-translate-y-2 bg-gray-50">
+      <div className="relative aspect-[3/4] rounded-[1.5rem] overflow-hidden shadow-card transition-all duration-700 group-hover:shadow-card-hover group-hover:-translate-y-2 bg-gray-50">
         <img
           src={product.image}
           alt={product.name}
@@ -226,7 +226,7 @@ const FloatingGallery = ({ content, products: cmsProducts }: { content?: any; pr
         {/* Badges */}
         <div className="absolute top-6 left-6 flex flex-col gap-2 z-20">
           {product.isNew && (
-            <span className="px-3 py-1 bg-[#4a7c59] text-white text-[9px] font-bold tracking-widest uppercase rounded-full shadow-lg">
+            <span className="px-3 py-1 bg-forest-light text-white text-[9px] font-bold tracking-widest uppercase rounded-full shadow-lg">
               New Launch
             </span>
           )}
@@ -253,7 +253,7 @@ const FloatingGallery = ({ content, products: cmsProducts }: { content?: any; pr
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-px bg-forest/20" />
-              <span className="text-[10px] font-bold tracking-[0.4em] text-[#4a7c59] uppercase">{c.label || "Our Collection"}</span>
+              <span className="text-[10px] font-bold tracking-[0.4em] text-forest-light uppercase">{c.label || "Our Collection"}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-forest tracking-tight">
               {c.title_line1 || "Crafted with"} <br /> <span className="italic font-serif">{c.title_line2 || "Natural Integrity."}</span>
@@ -313,11 +313,11 @@ const FloatingGallery = ({ content, products: cmsProducts }: { content?: any; pr
       <div className="mt-12 flex justify-center items-center gap-3">
         <div className="w-24 h-1 bg-forest/10 rounded-full relative overflow-hidden">
           <motion.div
-            className="absolute inset-y-0 left-0 bg-[#4a7c59] rounded-full"
+            className="absolute inset-y-0 left-0 bg-forest-light rounded-full"
             style={{ width: progressWidth }}
           />
         </div>
-        <span className="text-[8px] font-bold tracking-[0.2em] text-forest/40 uppercase">
+        <span className="text-[8px] font-bold tracking-[0.2em] text-forest/60 uppercase">
           {isPaused ? "Swipe to explore" : "Auto-playing"}
         </span>
       </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -78,22 +79,14 @@ const Hero = ({ content }: { content?: any }) => {
             </p>
 
             <div className="hero-btn">
-              <a href={c.button_link || "#"} className="inline-block px-8 py-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-lg text-[10px] md:text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-forest transition-all active:scale-95">
+              <a href={c.button_link || "#"} className="group inline-flex items-center gap-3 px-8 py-4 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-xl text-xs md:text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-forest transition-all active:scale-95">
                 {c.button_text || "Read More"}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-px h-16 bg-gradient-to-b from-forest/20 to-transparent" />
-      </motion.div>
     </section>
   );
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import type { Product } from "@/lib/api";
@@ -10,17 +11,19 @@ const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Link
       href={`/products/${product.slug}`}
-      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:shadow-forest/5 transition-all flex flex-col"
+      className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-card-hover hover:shadow-forest/5 transition-all flex flex-col"
     >
       <div className="aspect-square overflow-hidden relative">
-        <img
+        <Image
           src={image}
           alt={product.name}
+          width={600}
+          height={600}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         {product.is_new && (
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 bg-[#4a7c59] text-white rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">
+            <span className="px-3 py-1 bg-forest-light text-white rounded-full text-[10px] font-bold tracking-wider uppercase shadow-sm">
               New
             </span>
           </div>
@@ -34,13 +37,13 @@ const ProductCard = ({ product }: { product: Product }) => {
         )}
       </div>
       <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-lg font-bold text-forest mb-2 group-hover:text-[#4a7c59] transition-colors">
+        <h3 className="text-lg font-bold text-forest mb-2 group-hover:text-forest-light transition-colors">
           {product.name}
         </h3>
         {product.description && (
           <p className="text-forest/60 text-sm mb-4 line-clamp-2 flex-1">{product.description}</p>
         )}
-        <div className="flex items-center gap-2 text-[#4a7c59] font-bold text-sm group-hover:gap-3 transition-all">
+        <div className="flex items-center gap-2 text-forest-light font-bold text-sm group-hover:gap-3 transition-all">
           <ShoppingBag className="h-4 w-4" />
           View Details
         </div>

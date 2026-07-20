@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 const features = [
   {
@@ -38,29 +37,19 @@ const WhyGlutenFree = ({ content }: { content?: any }) => {
       }
     });
 
-    tl.from(".wgf-img", {
-      x: -50,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out"
-    })
-    .from(".wgf-content", {
-      x: 50,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out"
-    }, "-=1")
-    .from(".wgf-feature", {
-      y: 20,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out"
-    }, "-=0.8");
+    tl.fromTo(".wgf-img",
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+    )
+    .fromTo(".wgf-content",
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1.2, ease: "power3.out", clearProps: "all" },
+      "-=1"
+    );
   }, { scope: container });
 
   return (
-    <section ref={container} id="benefits" className="py-20 md:py-24 bg-white overflow-hidden">
+    <section ref={container} id="benefits" className="py-24 md:py-32 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* Visual Focus */}
         <div className="wgf-img lg:col-span-5 flex justify-center">
@@ -74,19 +63,19 @@ const WhyGlutenFree = ({ content }: { content?: any }) => {
         {/* Content Side */}
         <div className="wgf-content lg:col-span-7 space-y-8">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#4a7c59] leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-forest-light leading-tight">
               {c.title || "Why Gluten-Free is a Good Choice"}
             </h2>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {featuresData.map((feature: any, index: number) => (
               <div
                 key={index}
-                className="wgf-feature space-y-1"
+                className="space-y-1"
               >
-                <h4 className="text-lg font-bold text-black">{feature.title}</h4>
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                <h4 className="text-base md:text-lg font-bold text-forest">{feature.title}</h4>
+                <p className="text-forest/60 text-xs md:text-sm leading-relaxed">
                   {feature.desc}
                 </p>
               </div>

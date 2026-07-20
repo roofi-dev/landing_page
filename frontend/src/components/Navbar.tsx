@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,7 @@ const Navbar = ({ content }: { content?: any }) => {
   const c = content || {};
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,8 +84,9 @@ const Navbar = ({ content }: { content?: any }) => {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] font-bold tracking-widest uppercase transition-colors flex items-center gap-1",
-                  scrolled ? "hover:text-amber-gold" : "hover:text-amber-gold"
+                  "text-[11px] font-bold tracking-widest uppercase transition-colors flex items-center gap-1 relative",
+                  scrolled ? "hover:text-amber-gold" : "hover:text-amber-gold",
+                  pathname === link.href && (scrolled ? "text-amber-gold" : "text-amber-gold")
                 )}
               >
                 {link.name}
