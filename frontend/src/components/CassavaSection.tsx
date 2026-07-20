@@ -4,13 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Leaf, Heart, Check, Sparkles, Smile } from "lucide-react";
 
+import Image from "next/image";
+
 const icons = [
-  { name: "GLUTEN FREE", icon: "/icons/gluten-free.svg" },
-  { name: "EGG FREE", icon: "/icons/egg-free.svg" },
-  { name: "DAIRY FREE", icon: "/icons/dairy-free.svg" },
-  { name: "NO PRESERVATIVES", icon: "/icons/no-preservatives.svg" },
-  { name: "NATURAL", icon: "/icons/natural.svg" },
-  { name: "HEALTHY", icon: "/icons/healthy.svg" },
+  { name: "GLUTEN FREE", icon: "/icon-1.webp" },
+  { name: "EGG FREE", icon: "/icon-2.webp" },
+  { name: "DAIRY FREE", icon: "/icon-3.webp" },
+  { name: "NO PRESERVATIVES", icon: "/icon-4.webp" },
+  { name: "NATURAL", icon: "/icon-5.webp" },
+  { name: "HEALTHY", icon: "/icon-6.webp" },
 ];
 
 import { useGSAP } from "@gsap/react";
@@ -67,15 +69,17 @@ const CassavaSection = ({ content }: { content?: any }) => {
 
         {/* Icons Grid */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
-          {(c.icons || icons).map((item: any, index: number) => (
+          {icons.map((item: any, index: number) => (
             <div
               key={index}
               className="cassava-icon flex flex-col items-center space-y-2"
             >
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-[#4a7c59] flex items-center justify-center p-3 transition-transform hover:scale-110 duration-300">
-                <div className="w-full h-full bg-[#4a7c59] rounded-full flex items-center justify-center text-white text-[8px] font-bold text-center leading-tight shadow-lg shadow-forest/20">
-                  {item.name}
-                </div>
+              <div className="w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center p-3 transition-transform hover:scale-110 duration-300 bg-white overflow-hidden">
+                <img 
+                  src={item.icon} 
+                  alt={item.name} 
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
           ))}
