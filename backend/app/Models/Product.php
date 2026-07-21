@@ -8,7 +8,8 @@ class Product extends Model
 {
     protected $fillable = [
         'name', 'slug', 'category', 'description', 'ingredients',
-        'nutritional_info', 'image_url', 'is_new', 'is_featured',
+        'nutritional_info', 'buy_now_text', 'buy_now_link',
+        'image_url', 'is_new', 'is_featured',
         'status', 'sort_order'
     ];
 

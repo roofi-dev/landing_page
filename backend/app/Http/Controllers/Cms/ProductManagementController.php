@@ -24,10 +24,12 @@ class ProductManagementController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string',
-            'category' => 'nullable|string',
+            'category' => 'required|in:Flour,Cookies,Noodle,Pasta',
             'description' => 'nullable|string',
             'ingredients' => 'nullable|string',
             'nutritional_info' => 'nullable|string',
+            'buy_now_text' => 'nullable|string',
+            'buy_now_link' => 'nullable|string',
             'image_url' => 'nullable|string',
             'is_new' => 'boolean',
             'is_featured' => 'boolean',
@@ -56,10 +58,12 @@ class ProductManagementController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string',
-            'category' => 'nullable|string',
+            'category' => 'required|in:Flour,Cookies,Noodle,Pasta',
             'description' => 'nullable|string',
             'ingredients' => 'nullable|string',
             'nutritional_info' => 'nullable|string',
+            'buy_now_text' => 'nullable|string',
+            'buy_now_link' => 'nullable|string',
             'image_url' => 'nullable|string',
             'is_new' => 'boolean',
             'is_featured' => 'boolean',

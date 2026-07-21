@@ -13,6 +13,8 @@ export interface Product {
   ingredients: string | null;
   nutritional_info: string | null;
   image_url: string | null;
+  buy_now_text: string | null;
+  buy_now_link: string | null;
   is_new: boolean;
   is_featured: boolean;
   status: string;

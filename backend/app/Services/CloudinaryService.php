@@ -5,6 +5,7 @@ namespace App\Services;
 use Cloudinary\Cloudinary;
 use Cloudinary\Configuration\Configuration;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class CloudinaryService
 {
@@ -49,14 +50,20 @@ class CloudinaryService
         ];
     }
 
-    public function destroy(string $publicId): bool
+    public function destroy(string $publicId, string $resourceType = 'image'): bool
     {
         try {
-            $this->cloudinary()->uploadApi()->destroy($publicId, [
-                'resource_type' => 'auto',
+            $result = $this->cloudinary()->uploadApi()->destroy($publicId, [
+                'resource_type' => $resourceType === 'video' ? 'video' : 'image',
             ]);
-            return true;
+
+            if (($result['result'] ?? null) === 'not found') {
+                Log::warning("Cloudinary: asset not found for public_id: {$publicId}");
+            }
+
+            return ($result['result'] ?? null) === 'ok' || ($result['result'] ?? null) === 'not found';
         } catch (Exception $e) {
+            Log::error("Cloudinary destroy failed for public_id {$publicId}: " . $e->getMessage());
             return false;
         }
     }

@@ -18,39 +18,44 @@ class MediaController extends Controller
     public function store(Request $request, CloudinaryService $cloudinary)
     {
         $request->validate([
-            'file' => 'required|file|mimes:jpeg,jpg,png,gif,webp,svg,mp4,webm|max:10240',
+            'files' => 'required|array',
+            'files.*' => 'file|mimes:jpeg,jpg,png,gif,webp,svg,mp4,webm|max:10240',
         ]);
 
-        $file = $request->file('file');
-        $filePath = $file->getRealPath();
+        $mediaList = [];
 
-        if ($cloudinary->isConfigured()) {
-            $result = $cloudinary->upload($filePath);
+        foreach ($request->file('files') as $file) {
+            $filePath = $file->getRealPath();
 
-            $media = Media::create([
-                'name' => $file->getClientOriginalName(),
-                'file_path' => $result['public_id'],
-                'file_url' => $result['secure_url'],
-                'public_id' => $result['public_id'],
-                'mime_type' => $file->getMimeType(),
-                'resource_type' => $result['resource_type'],
-                'size' => $result['bytes'] ?? $file->getSize(),
-            ]);
-        } else {
-            $path = $file->store('uploads', 'public');
-            $url = url('/storage/' . $path);
+            if ($cloudinary->isConfigured()) {
+                $result = $cloudinary->upload($filePath);
 
-            $media = Media::create([
-                'name' => $file->getClientOriginalName(),
-                'file_path' => $path,
-                'file_url' => $url,
-                'mime_type' => $file->getMimeType(),
-                'resource_type' => 'image',
-                'size' => $file->getSize(),
-            ]);
+                $media = Media::create([
+                    'name' => $file->getClientOriginalName(),
+                    'file_path' => $result['public_id'],
+                    'file_url' => $result['secure_url'],
+                    'public_id' => $result['public_id'],
+                    'mime_type' => $file->getMimeType(),
+                    'resource_type' => $result['resource_type'],
+                    'size' => $result['bytes'] ?? $file->getSize(),
+                ]);
+            } else {
+                $path = $file->store('uploads', 'public');
+                $url = url('/storage/' . $path);
+
+                $media = Media::create([
+                    'name' => $file->getClientOriginalName(),
+                    'file_path' => $path,
+                    'file_url' => $url,
+                    'mime_type' => $file->getMimeType(),
+                    'resource_type' => 'image',
+                    'size' => $file->getSize(),
+                ]);
+            }
+            $mediaList[] = $media;
         }
 
-        return response()->json($media, 201);
+        return response()->json($mediaList, 201);
     }
 
     public function destroy($id, CloudinaryService $cloudinary)

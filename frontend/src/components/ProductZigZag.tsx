@@ -251,10 +251,10 @@ const ProductItem = ({
           transition={{ duration: 0.6, delay: 0.45 }}
           className="mt-6 flex items-center gap-4"
         >
-          <button className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-[0.5rem] font-montserrat font-semibold text-xs transition-all duration-400 hover:bg-[#4a7c59] shadow-sm">
-            <span>Buy Now</span>
+          <a href={product.buy_now_link || "#"} className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-[0.5rem] font-montserrat font-semibold text-xs transition-all duration-400 hover:bg-[#4a7c59] shadow-sm">
+            <span>{product.buy_now_text || "Buy Now"}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-400 group-hover/btn:translate-x-1" />
-          </button>
+          </a>
 
           <button className="inline-flex items-center gap-1.5 px-3 py-2 text-forest font-montserrat font-semibold text-xs transition-colors duration-300 hover:text-[#4a7c59]">
             View Detail

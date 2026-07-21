@@ -25,8 +25,19 @@
                         <input type="text" name="name" value="{{ $product->name }}" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-[#052e16] focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all shadow-inner">
                     </div>
                     <div class="space-y-2">
-                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Category</label>
-                        <input type="text" name="category" value="{{ $product->category }}" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-[#052e16] focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all shadow-inner">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Category *</label>
+                        @php
+                            $category = strtolower((string) $product->category);
+                            $categoryValue = str_contains($category, 'flour') || str_contains($category, 'baking') ? 'Flour' : (str_contains($category, 'cookie') ? 'Cookies' : (str_contains($category, 'noodle') ? 'Noodle' : (str_contains($category, 'pasta') || $category === 'pantry' ? 'Pasta' : '')));
+                        @endphp
+                        <select name="category" required class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-[#052e16] focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all appearance-none cursor-pointer">
+                            <option value="" disabled {{ $categoryValue === '' ? 'selected' : '' }}>Select product category</option>
+                            <option value="Flour" {{ $categoryValue === 'Flour' ? 'selected' : '' }}>Flour</option>
+                            <option value="Cookies" {{ $categoryValue === 'Cookies' ? 'selected' : '' }}>Cookies</option>
+                            <option value="Noodle" {{ $categoryValue === 'Noodle' ? 'selected' : '' }}>Noodle</option>
+                            <option value="Pasta" {{ $categoryValue === 'Pasta' ? 'selected' : '' }}>Pasta</option>
+                        </select>
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">This determines the tab where the product appears</p>
                     </div>
                 </div>
 
@@ -58,6 +69,19 @@
                     <div class="space-y-2">
                         <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Nutritional Information</label>
                         <textarea name="nutritional_info" rows="5" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-[13px] font-medium text-[#052e16] leading-relaxed focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all resize-none shadow-inner">{{ $product->nutritional_info }}</textarea>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 border-t border-slate-100">
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Buy Now Button Text</label>
+                        <input type="text" name="buy_now_text" value="{{ $product->buy_now_text }}" placeholder="e.g. Buy Now, Beli Sekarang" class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-[#052e16] focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all shadow-inner">
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">Text shown on the Buy Now button</p>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Buy Now Button Link</label>
+                        <input type="text" name="buy_now_link" value="{{ $product->buy_now_link }}" placeholder="https://tokopedia.com/..." class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold text-[#052e16] focus:ring-2 focus:ring-[#fbbf24]/20 focus:border-[#fbbf24] outline-none transition-all shadow-inner">
+                        <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-2">URL when the button is clicked</p>
                     </div>
                 </div>
             </div>
