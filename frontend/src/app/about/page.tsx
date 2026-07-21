@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import { getPageContent } from "@/lib/api";
-import { Leaf, Heart, Globe, Award } from "lucide-react";
+import { Zap, Compass, ShieldCheck, TrendingUp } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us — Ladang Lima",
@@ -12,24 +12,28 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    icon: Leaf,
-    title: "Natural & Sustainable",
-    description: "We harness the power of cassava, a traditional Indonesian staple, to create food that's good for you and the planet.",
+    icon: Zap,
+    title: "Produktif",
+    subtitle: "Productive",
+    description: "Selalu menghasilkan karya, kinerja, atau solusi yang bernilai tinggi dan berdampak.",
   },
   {
-    icon: Heart,
-    title: "Health First",
-    description: "Every product is crafted with your wellbeing in mind — gluten-free, egg-free, and free from junk.",
+    icon: Compass,
+    title: "Proaktif",
+    subtitle: "Proactive",
+    description: "Bertindak sebelum masalah terjadi dan selalu berinisiatif.",
   },
   {
-    icon: Globe,
-    title: "Earth Friendly",
-    description: "We tackle five major agriculture issues to ensure our products are as sustainable as they are nutritious.",
+    icon: ShieldCheck,
+    title: "Profesional",
+    subtitle: "Professional",
+    description: "Bekerja dengan kompetensi, tanggung jawab, dan standar etika tinggi.",
   },
   {
-    icon: Award,
-    title: "Premium Quality",
-    description: "Our mocaf flour matches wheat flour characteristics, enabling seamless gluten-free baking without compromise.",
+    icon: TrendingUp,
+    title: "Progresif",
+    subtitle: "Progressive",
+    description: "Terus berkembang, berinovasi, dan berorientasi ke depan.",
   },
 ];
 
@@ -90,19 +94,27 @@ export default async function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-gradient-to-b from-white to-[#f0f5f1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-16">
             <span className="text-[10px] font-bold tracking-[0.4em] text-[#4a7c59] uppercase">{v.label || "What We Stand For"}</span>
             <h2 className="mt-4 text-3xl md:text-5xl font-bold text-forest">{v.title || "Our Core Values"}</h2>
+            <div className="mt-6 w-20 h-1 bg-[#4a7c59] rounded-full mx-auto" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {values.map((value, i) => (
-              <div key={i} className="space-y-4 p-8 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 rounded-xl bg-forest/5 flex items-center justify-center">
-                  <value.icon className="h-6 w-6 text-[#4a7c59]" />
+              <div
+                key={i}
+                className="group relative bg-white rounded-3xl p-8 border border-gray-100 hover:border-[#4a7c59]/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+              >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#4a7c59] to-[#6ba87f] rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4a7c59]/10 to-[#4a7c59]/5 flex items-center justify-center mb-6 group-hover:from-[#4a7c59] group-hover:to-[#3a6147] transition-all duration-500">
+                  <value.icon className="h-7 w-7 text-[#4a7c59] group-hover:text-white transition-colors duration-500" />
                 </div>
-                <h3 className="text-lg font-bold text-forest">{value.title}</h3>
+                <div className="space-y-1 mb-3">
+                  <h3 className="text-xl font-bold text-forest">{value.title}</h3>
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-[#4a7c59]/70 uppercase">{value.subtitle}</span>
+                </div>
                 <p className="text-forest/60 text-sm leading-relaxed">{value.description}</p>
               </div>
             ))}
