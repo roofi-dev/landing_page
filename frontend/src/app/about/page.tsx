@@ -16,7 +16,7 @@ export default async function AboutPage() {
   const v = content.about_values || {};
   const t = content.about_timeline || {};
 
-  const coreValues = (v.values || [
+  const coreValues = (v.values && v.values.length > 0 ? v.values : [
     { title: "Productive", description: "Consistently producing work, performance, and solutions of high value and meaningful impact." },
     { title: "Proactive", description: "Taking action before problems arise and always showing initiative." },
     { title: "Professional", description: "Working with competence, responsibility, and high ethical standards." },
@@ -26,7 +26,7 @@ export default async function AboutPage() {
     num: (i + 1).toString().padStart(2, "0")
   }));
 
-  const timelineItems = t.timeline || [
+  const timelineItems = t.timeline && t.timeline.length > 0 ? t.timeline : [
     { year: "2013", title: "The Beginning", description: "Ladang Lima was founded with a vision to revolutionize gluten-free food in Indonesia." },
     { year: "2015", title: "Mocaf Innovation", description: "Developed our signature mocaf flour with characteristics similar to wheat flour." },
     { year: "2018", title: "Product Expansion", description: "Expanded from flour to pasta, noodles, cookies, and cake mixes." },
@@ -35,7 +35,7 @@ export default async function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#FAF9F6]">
+    <main className="min-h-screen bg-cream">
       <Navbar content={content.navbar} />
       <AboutContent
         h={h}
