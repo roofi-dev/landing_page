@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
+import NewsGrid from "@/components/NewsGrid";
 import { getPageContent, getNews } from "@/lib/api";
-import { ArrowRight, Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "News — Ladang Lima",
@@ -29,54 +28,30 @@ export default async function NewsPage() {
 
       <section className="py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/news/${article.slug}`}
-                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all flex flex-col"
-              >
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <img
-                    src={article.image_url || ""}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-forest uppercase tracking-wider">
-                      {article.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center text-forest/40 text-sm mb-3">
-                    <Calendar className="h-4 w-4 mr-1.5" />
-                    {article.published_date
-                      ? new Date(article.published_date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })
-                      : ""}
-                  </div>
-                  <h3 className="text-lg font-bold text-forest mb-3 group-hover:text-[#4a7c59] transition-colors leading-tight">
-                    {article.title}
-                  </h3>
-                  <p className="text-forest/60 text-sm mb-4 line-clamp-2 flex-1">{article.excerpt}</p>
-                  <div className="flex items-center text-[#4a7c59] font-bold text-sm group-hover:gap-3 transition-all">
-                    Read More
-                    <ArrowRight className="h-4 w-4" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <NewsGrid articles={articles} />
+        </div>
+      </section>
 
-          {articles.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-forest/40 text-lg">No articles available yet.</p>
-            </div>
-          )}
+      {/* Newsletter CTA */}
+      <section className="py-20 md:py-28 bg-forest relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full overflow-hidden pointer-events-none opacity-10 hidden md:block">
+          <div className="absolute top-1/2 -right-20 w-80 h-80 border border-white/20 rounded-full" />
+          <div className="absolute top-1/3 -right-10 w-60 h-60 border border-white/10 rounded-full" />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-12 text-center">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="w-12 h-px bg-forest-light/40" />
+            <span className="text-[10px] font-bold tracking-[0.4em] text-forest-light uppercase">
+              Stay Connected
+            </span>
+            <div className="w-12 h-px bg-forest-light/40" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.15] tracking-tight mb-5 font-serif">
+            Never miss a story from Ladang Lima
+          </h2>
+          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mx-auto font-light">
+            Get the latest articles, health tips, and updates delivered straight to your inbox.
+          </p>
         </div>
       </section>
 

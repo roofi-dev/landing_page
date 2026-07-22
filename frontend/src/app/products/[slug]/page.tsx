@@ -49,7 +49,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-forest/60 hover:text-[#4a7c59] transition-colors mb-12 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-forest/60 hover:text-[#6b9b7e] transition-colors mb-12 text-sm font-medium"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Products
@@ -60,7 +60,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               <img src={image} alt={product.name} className="w-full h-full object-cover" />
               {product.is_new && (
                 <div className="absolute top-6 left-6">
-                  <span className="px-4 py-2 bg-[#4a7c59] text-white rounded-full text-xs font-bold tracking-wider uppercase shadow-lg">
+                  <span className="px-4 py-2 bg-[#6b9b7e] text-white rounded-full text-xs font-bold tracking-wider uppercase shadow-lg">
                     New Arrival
                   </span>
                 </div>
@@ -70,7 +70,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <div className="space-y-8">
               <div className="space-y-4">
                 {product.category && (
-                  <span className="text-[10px] font-bold tracking-[0.4em] text-[#4a7c59] uppercase">
+                  <span className="text-[10px] font-bold tracking-[0.4em] text-[#6b9b7e] uppercase">
                     {product.category}
                   </span>
                 )}
@@ -83,7 +83,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               {product.ingredients && (
                 <div className="space-y-3 p-6 rounded-2xl bg-white border border-gray-100">
                   <div className="flex items-center gap-2">
-                    <Leaf className="h-5 w-5 text-[#4a7c59]" />
+                    <Leaf className="h-5 w-5 text-[#6b9b7e]" />
                     <h3 className="font-bold text-forest">Ingredients</h3>
                   </div>
                   <p className="text-forest/60 text-sm leading-relaxed">{product.ingredients}</p>
@@ -93,7 +93,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               {product.nutritional_info && (
                 <div className="space-y-3 p-6 rounded-2xl bg-white border border-gray-100">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-[#4a7c59]" />
+                    <CheckCircle className="h-5 w-5 text-[#6b9b7e]" />
                     <h3 className="font-bold text-forest">Nutritional Information</h3>
                   </div>
                   <p className="text-forest/60 text-sm leading-relaxed whitespace-pre-line">{product.nutritional_info}</p>
@@ -101,7 +101,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
               )}
 
               <div className="flex flex-wrap gap-4 pt-4">
-                <button className="inline-flex items-center gap-2 px-8 py-3 bg-forest text-white rounded-xl font-bold hover:bg-[#4a7c59] transition-all active:scale-95">
+                <button className="inline-flex items-center gap-2 px-8 py-3 bg-forest text-white rounded-xl font-bold hover:bg-[#6b9b7e] transition-all active:scale-95">
                   <ShoppingBag className="h-5 w-5" />
                   Buy Now
                 </button>
@@ -133,7 +133,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="font-bold text-forest text-sm group-hover:text-[#4a7c59] transition-colors">{rp.name}</h3>
+                      <h3 className="font-bold text-forest text-sm group-hover:text-[#6b9b7e] transition-colors">{rp.name}</h3>
                     </div>
                   </Link>
                 ))}

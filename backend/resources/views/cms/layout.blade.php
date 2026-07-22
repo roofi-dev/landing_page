@@ -7,9 +7,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Instrument Serif', serif; }
         .sidebar-link.active { 
             background: linear-gradient(to right, rgba(251, 191, 36, 0.1), transparent); 
             color: #fbbf24; /* amber-400 */
@@ -26,14 +27,14 @@
             width: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #0f172a;
+            background: #1b3b2f;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #2a5340;
             border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+            background: #6b9b7e;
         }
 
         /* Toast Animations */
@@ -55,7 +56,7 @@
         <div id="toast-container" class="fixed top-8 right-8 z-[100] flex flex-col gap-4 w-full max-w-[400px] pointer-events-none"></div>
 
         <!-- Sidebar -->
-        <aside class="w-72 bg-[#0f172a] text-white flex flex-col fixed h-full z-40 shadow-[4px_0_24px_rgba(0,0,0,0.1)]">
+        <aside class="w-72 bg-[#1b3b2f] text-white flex flex-col fixed h-full z-40 shadow-[4px_0_24px_rgba(0,0,0,0.1)]">
             <div class="p-10">
                 <div class="flex flex-col items-center gap-4 text-center">
                     <div class="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center shadow-2xl p-3 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
@@ -121,9 +122,9 @@
                 </a>
             </nav>
 
-            <div class="p-8 border-t border-slate-800/50">
+            <div class="p-8 border-t border-white/10">
                 <div class="flex items-center gap-4 mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-sm font-black text-white border border-slate-600 shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-800 to-[#1b3b2f] flex items-center justify-center text-sm font-black text-white border border-white/10 shadow-xl">
                         {{ strtoupper(substr(auth()->user()->name ?? 'A', 0, 1)) }}
                     </div>
                     <div class="flex-1 min-w-0">
@@ -133,7 +134,7 @@
                 </div>
                 <form action="{{ route('cms.logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="w-full text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-white border border-slate-800 rounded-2xl py-4 transition-all hover:bg-white/5 active:scale-95 hover:border-slate-600">Secure Logout</button>
+                    <button type="submit" class="w-full text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:text-white border border-white/10 rounded-2xl py-4 transition-all hover:bg-white/5 active:scale-95 hover:border-white/20">Secure Logout</button>
                 </form>
             </div>
         </aside>
@@ -149,7 +150,7 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             
-            const bgColor = type === 'success' ? 'bg-[#052e16]' : 'bg-red-900';
+            const bgColor = type === 'success' ? 'bg-[#1b3b2f]' : 'bg-red-900';
             const icon = type === 'success' 
                 ? `<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`
                 : `<svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;

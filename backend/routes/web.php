@@ -13,7 +13,7 @@ Route::get('/', function () {
 });
 
 // CMS Auth
-Route::get('/cms/login', [DashboardController::class, 'login'])->name('cms.login');
+Route::get('/cms/login', [DashboardController::class, 'login'])->name('login');
 Route::post('/cms/login', [DashboardController::class, 'authenticate']);
 Route::post('/cms/logout', [DashboardController::class, 'logout'])->name('cms.logout');
 

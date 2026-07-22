@@ -35,7 +35,7 @@
         </div>
 
         <div class="glass-card rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-10 lg:p-12 relative overflow-hidden group">
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-right from-amber-400 to-amber-600"></div>
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 to-amber-600"></div>
             
             <div class="mb-10">
                 <h2 class="text-2xl font-black text-[#0f172a] tracking-tight uppercase">Welcome Back</h2>
@@ -49,7 +49,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('cms.login') }}" method="POST">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="space-y-6">
                     <div class="space-y-2">

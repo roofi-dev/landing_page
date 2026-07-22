@@ -53,7 +53,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
         <div className="max-w-4xl mx-auto px-6 lg:px-12">
           <Link
             href="/recipes"
-            className="inline-flex items-center gap-2 text-forest/60 hover:text-[#4a7c59] transition-colors mb-12 text-sm font-medium"
+            className="inline-flex items-center gap-2 text-forest/60 hover:text-[#6b9b7e] transition-colors mb-12 text-sm font-medium"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Recipes
@@ -67,7 +67,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
             {recipe.prep_time && (
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-forest/5 flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-[#4a7c59]" />
+                  <Clock className="h-5 w-5 text-[#6b9b7e]" />
                 </div>
                 <div>
                   <p className="text-[10px] font-bold tracking-widest text-forest/40 uppercase">Prep Time</p>
@@ -78,7 +78,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
             {recipe.serving_size && (
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-forest/5 flex items-center justify-center">
-                  <Users className="h-5 w-5 text-[#4a7c59]" />
+                  <Users className="h-5 w-5 text-[#6b9b7e]" />
                 </div>
                 <div>
                   <p className="text-[10px] font-bold tracking-widest text-forest/40 uppercase">Serves</p>
@@ -89,7 +89,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
             {recipe.difficulty && (
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-forest/5 flex items-center justify-center">
-                  <ChefHat className="h-5 w-5 text-[#4a7c59]" />
+                  <ChefHat className="h-5 w-5 text-[#6b9b7e]" />
                 </div>
                 <div>
                   <p className="text-[10px] font-bold tracking-widest text-forest/40 uppercase">Difficulty</p>
@@ -107,13 +107,13 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
             {ingredients.length > 0 && (
               <div className="space-y-6">
                 <div className="flex items-center gap-2">
-                  <ListOrdered className="h-5 w-5 text-[#4a7c59]" />
+                  <ListOrdered className="h-5 w-5 text-[#6b9b7e]" />
                   <h2 className="text-2xl font-bold text-forest">Ingredients</h2>
                 </div>
                 <ul className="space-y-3">
                   {ingredients.map((ing, i) => (
                     <li key={i} className="flex items-start gap-3 text-forest/70 leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#4a7c59] mt-2.5 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#6b9b7e] mt-2.5 shrink-0" />
                       {ing.replace(/^[-•]\s*/, "")}
                     </li>
                   ))}
@@ -124,7 +124,7 @@ export default async function RecipeDetailPage({ params }: { params: Promise<{ s
             {instructions.length > 0 && (
               <div className="space-y-6">
                 <div className="flex items-center gap-2">
-                  <ChefHat className="h-5 w-5 text-[#4a7c59]" />
+                  <ChefHat className="h-5 w-5 text-[#6b9b7e]" />
                   <h2 className="text-2xl font-bold text-forest">Instructions</h2>
                 </div>
                 <ol className="space-y-6">

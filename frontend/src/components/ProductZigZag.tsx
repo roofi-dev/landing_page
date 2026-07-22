@@ -46,11 +46,11 @@ const ProductZigZag = ({ products, content }: ProductZigZagProps) => {
             transition={{ duration: 0.5 }}
             className="flex items-center justify-center gap-3 mb-4"
           >
-            <div className="h-px w-8 bg-[#4a7c59]/30" />
-            <span className="text-[10px] font-montserrat font-semibold tracking-[0.25em] uppercase text-[#4a7c59]">
+            <div className="h-px w-8 bg-[#6b9b7e]/30" />
+            <span className="text-[10px] font-sans font-semibold tracking-[0.25em] uppercase text-[#6b9b7e]">
               Ladang Lima Collection
             </span>
-            <div className="h-px w-8 bg-[#4a7c59]/30" />
+            <div className="h-px w-8 bg-[#6b9b7e]/30" />
           </motion.div>
 
           <motion.h2
@@ -58,7 +58,7 @@ const ProductZigZag = ({ products, content }: ProductZigZagProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-montserrat font-bold text-forest tracking-tight leading-[1.1]"
+            className="text-3xl md:text-5xl font-sans font-bold text-forest tracking-tight leading-[1.1]"
           >
             {content?.title || "Our Product"}
           </motion.h2>
@@ -83,7 +83,7 @@ const ProductZigZag = ({ products, content }: ProductZigZagProps) => {
                 key={tab.label}
                 onClick={() => setActiveCategory(tab.label)}
                 className={cn(
-                  "relative px-4 md:px-7 py-2.5 text-xs md:text-sm font-montserrat font-semibold transition-colors duration-300 rounded-full z-10",
+                  "relative px-4 md:px-7 py-2.5 text-xs md:text-sm font-sans font-semibold transition-colors duration-300 rounded-full z-10",
                   activeCategory === tab.label
                     ? "text-white"
                     : "text-[#64748b] hover:text-forest"
@@ -113,9 +113,9 @@ const ProductZigZag = ({ products, content }: ProductZigZagProps) => {
               className="text-center py-24"
             >
               <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-[#FAF9F6] flex items-center justify-center">
-                <span className="text-xl text-[#4a7c59]">∅</span>
+                <span className="text-xl text-[#6b9b7e]">∅</span>
               </div>
-              <p className="text-[#64748b] text-sm font-montserrat">
+              <p className="text-[#64748b] text-sm font-sans">
                 No products in this category yet.
               </p>
             </motion.div>
@@ -173,7 +173,7 @@ const ProductItem = ({
         <div
           className={cn(
             "absolute inset-0 rounded-[1.5rem] translate-x-3 translate-y-3 lg:translate-x-4 lg:translate-y-4",
-            isEven ? "bg-[#4a7c59]/8" : "bg-[#B45309]/6"
+            isEven ? "bg-[#6b9b7e]/8" : "bg-[#B45309]/6"
           )}
         />
 
@@ -189,7 +189,7 @@ const ProductItem = ({
           {/* New badge */}
           {product.is_new && (
             <div className="absolute top-4 left-4 z-10">
-              <span className="px-2.5 py-1 bg-white/90 backdrop-blur-md text-forest text-[9px] font-montserrat font-bold tracking-wider uppercase rounded-full shadow-sm">
+              <span className="px-2.5 py-1 bg-white/90 backdrop-blur-md text-forest text-[9px] font-sans font-bold tracking-wider uppercase rounded-full shadow-sm">
                 New
               </span>
             </div>
@@ -197,7 +197,7 @@ const ProductItem = ({
 
           {/* Large editorial number */}
           <div className="absolute bottom-4 right-4 z-10 pointer-events-none">
-            <span className="text-5xl md:text-6xl font-montserrat font-extrabold text-forest/[0.04] leading-none select-none">
+            <span className="text-5xl md:text-6xl font-sans font-extrabold text-forest/[0.04] leading-none select-none">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>
@@ -214,8 +214,8 @@ const ProductItem = ({
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex items-center gap-2 mb-3"
         >
-          <div className="w-4 h-px bg-[#4a7c59]" />
-          <span className="text-[10px] font-montserrat font-semibold text-[#4a7c59] tracking-[0.15em] uppercase">
+          <div className="w-4 h-px bg-[#6b9b7e]" />
+          <span className="text-[10px] font-sans font-semibold text-[#6b9b7e] tracking-[0.15em] uppercase">
             {product.category || "Premium"}
           </span>
         </motion.div>
@@ -226,7 +226,7 @@ const ProductItem = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-2xl md:text-3xl font-montserrat font-bold text-forest leading-tight tracking-tight"
+          className="text-2xl md:text-3xl font-sans font-bold text-forest leading-tight tracking-tight"
         >
           {product.name}
         </motion.h3>
@@ -251,12 +251,12 @@ const ProductItem = ({
           transition={{ duration: 0.6, delay: 0.45 }}
           className="mt-6 flex items-center gap-4"
         >
-          <a href={product.buy_now_link || "#"} className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-[0.5rem] font-montserrat font-semibold text-xs transition-all duration-400 hover:bg-[#4a7c59] shadow-sm">
+          <a href={product.buy_now_link || "#"} className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-forest text-white rounded-[0.5rem] font-sans font-semibold text-xs transition-all duration-400 hover:bg-[#6b9b7e] shadow-sm">
             <span>{product.buy_now_text || "Buy Now"}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-400 group-hover/btn:translate-x-1" />
           </a>
 
-          <button className="inline-flex items-center gap-1.5 px-3 py-2 text-forest font-montserrat font-semibold text-xs transition-colors duration-300 hover:text-[#4a7c59]">
+          <button className="inline-flex items-center gap-1.5 px-3 py-2 text-forest font-sans font-semibold text-xs transition-colors duration-300 hover:text-[#6b9b7e]">
             View Detail
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>

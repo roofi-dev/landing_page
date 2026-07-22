@@ -58,11 +58,11 @@ export default async function ContactPage() {
             {/* Left: Info */}
             <div className="lg:col-span-5 space-y-8">
               <div className="space-y-4">
-                <span className="text-[10px] font-bold tracking-[0.4em] text-[#4a7c59] uppercase">
+                <span className="text-[10px] font-bold tracking-[0.4em] text-[#6b9b7e] uppercase">
                   {ci.label || "Let's Talk"}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-forest leading-tight">
-                  {ci.title_line1 || "We're Here to"} <span className="italic text-[#4a7c59]">{ci.title_line2 || "Help"}</span>
+                  {ci.title_line1 || "We're Here to"} <span className="italic text-[#6b9b7e]">{ci.title_line2 || "Help"}</span>
                 </h2>
                 <p className="text-forest/60 text-base leading-relaxed">
                   {ci.description || "Whether you have a question about our products, want to partner with us, or simply want to say hello — our team is ready to listen."}
@@ -73,7 +73,7 @@ export default async function ContactPage() {
                 {contactInfo.map((info, i) => (
                   <div key={i} className="flex items-start gap-4 group">
                     <div className="w-12 h-12 rounded-xl bg-forest/5 flex items-center justify-center shrink-0 group-hover:bg-forest/10 transition-colors">
-                      <info.icon className="h-5 w-5 text-[#4a7c59]" />
+                      <info.icon className="h-5 w-5 text-[#6b9b7e]" />
                     </div>
                     <div className="space-y-1">
                       <p className="text-[10px] font-bold tracking-[0.3em] text-forest/40 uppercase">

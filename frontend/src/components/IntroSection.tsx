@@ -13,7 +13,7 @@ const IntroSection = ({ content }: { content?: any }) => {
     >
       {/* Subtle texture overlay if desired, or clean paper tone */}
       <div className="max-w-4xl mx-auto px-6 text-center">
-        <p className="text-[#052e16] text-sm md:text-base lg:text-lg font-medium leading-[1.8] tracking-wide max-w-3xl mx-auto">
+        <p className="text-[#1b3b2f] text-sm md:text-base lg:text-lg font-medium leading-[1.8] tracking-wide max-w-3xl mx-auto">
           {c.act1_description || "Indonesia's Pioneer of Gluten-free food products since 2013, freeing free people from around five agriculture issues without which have similar characteristic as wheat flour. Turning cassava into premium cassava flour, Ladang Lima also produce alternative products such as gluten-free noodles, cookies and alternative flour for pasta, pastry and delightful cakes."}
         </p>
       </div>
