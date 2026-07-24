@@ -84,9 +84,9 @@ const Navbar = ({ content }: { content?: any }) => {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-[11px] font-bold tracking-widest uppercase transition-colors flex items-center gap-1 relative",
-                  scrolled ? "hover:text-amber-gold" : "hover:text-amber-gold",
-                  pathname === link.href && (scrolled ? "text-amber-gold" : "text-amber-gold")
+                  "text-[11px] font-bold tracking-widest uppercase transition-colors flex items-center gap-1 relative drop-shadow-sm",
+                  scrolled ? "hover:text-amber-gold" : "hover:text-amber-400",
+                  pathname === link.href && (scrolled ? "text-amber-gold" : "text-amber-400")
                 )}
               >
                 {link.name}
