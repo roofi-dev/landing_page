@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import AboutContent from "@/components/AboutContent";
-import PrototypeSwitcher from "@/components/PrototypeSwitcher";
-import VariantA from "@/components/about-variants/VariantA";
-import VariantB from "@/components/about-variants/VariantB";
 import VariantC from "@/components/about-variants/VariantC";
-import VariantD from "@/components/about-variants/VariantD";
-import VariantE from "@/components/about-variants/VariantE";
 import AboutHero from "@/components/about-variants/AboutHero";
 import { getPageContent } from "@/lib/api";
 
@@ -16,22 +10,7 @@ export const metadata: Metadata = {
   description: "Discover the story behind Ladang Lima, Indonesia's pioneer of gluten-free cassava-based food products since 2013.",
 };
 
-const VARIANTS = [
-  { key: "A", name: "Editorial Refined" },
-  { key: "B", name: "Immersive Cinematic" },
-  { key: "C", name: "Modern Bento Grid" },
-  { key: "D", name: "Magazine Spread" },
-  { key: "E", name: "Minimalist Zen" },
-];
-
-export default async function AboutPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ variant?: string }>;
-}) {
-  const { variant } = await searchParams;
-  const currentVariant = VARIANTS.some((v) => v.key === variant) ? variant! : "C";
-
+export default async function AboutPage() {
   const content = await getPageContent();
   const h = content.about_header || {};
   const s = content.about_story || {};
@@ -62,14 +41,8 @@ export default async function AboutPage({
     <main className="min-h-screen bg-cream">
       <Navbar content={content.navbar} />
       <AboutHero h={h} />
-      {currentVariant === "A" && <VariantA {...variantProps} />}
-      {currentVariant === "B" && <VariantB {...variantProps} />}
-      {currentVariant === "C" && <VariantC {...variantProps} />}
-      {currentVariant === "D" && <VariantD {...variantProps} />}
-      {currentVariant === "E" && <VariantE {...variantProps} />}
-      {currentVariant === "original" && <AboutContent {...variantProps} />}
+      <VariantC {...variantProps} />
       <Footer content={content.footer} />
-      <PrototypeSwitcher variants={VARIANTS} current={currentVariant} />
     </main>
   );
 }
